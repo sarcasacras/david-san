@@ -18,3 +18,4 @@ const artworkSchema = new mongoose.Schema({
 const Artwork = mongoose.model('Artwork', artworkSchema);
 
 module.exports = Artwork;
+
