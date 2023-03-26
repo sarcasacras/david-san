@@ -37,13 +37,23 @@ app.get('/artworks/new', (req, res) => {
 
 app.get('/artworks/:id', (req, res) => {
     Artwork.findById(req.params.id)
-    .then((artwork) => {
-        res.render('show', { artwork });
-    })
-    .catch((err) => {
+        .then((artwork) => {
+            res.render('show', { artwork });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).send('Error retrieving artwork');
+        });
+});
+
+app.get('/artworks/:id/edit', async (req, res) => {
+    try {
+        const artwork = await Artwork.findById(req.params.id);
+        res.render('edit', { artwork });
+    } catch (err) {
         console.log(err);
-        res.status(500).send('Error retrieving artwork');
-    });
+        res.redirect('/artworks');
+    }
 });
 
 app.post('/artworks', (req, res) => {
@@ -61,6 +71,29 @@ app.post('/artworks', (req, res) => {
             console.log(err);
             res.status(500).send('Error creating a new artwork');
         });
+});
+
+app.put('/artworks/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, image, description } = req.body;
+
+    try {
+        const artwork = await Artwork.findById(id);
+        if (!artwork) {
+            return res.status(404).send('Artwork not found');
+        }
+
+        artwork.title = title;
+        artwork.image = image;
+        artwork.description = description;
+
+        await artwork.save();
+
+        res.redirect(`/artworks/${artwork._id}`);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
 });
 
 app.delete('/artworks/:id', (req, res) => {
