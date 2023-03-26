@@ -33,6 +33,17 @@ app.get('/artworks/new', (req, res) => {
     res.render('new');
 })
 
+app.get('/artworks/:id', (req, res) => {
+    Artwork.findById(req.params.id)
+    .then((artwork) => {
+        res.render('show', { artwork });
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).send('Error retrieving artwork');
+    });
+});
+
 app.post('/artworks', (req, res) => {
     const newArtwork = new Artwork({
         title: req.body.title,

@@ -12,7 +12,7 @@
   <h1>Artworks</h1>
   <ul>
     <% for (let artwork of artworks) { %>
-    <li><%= artwork.title %></li>
+    <li><a href="/artworks/<%= artwork._id %>"><%= artwork.title %></a></li>
     <% } %>
   </ul>
 </body>
