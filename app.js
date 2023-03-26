@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 
+//Эти данные должны потом находится в .env файле
 cloudinary.config({
     cloud_name: 'dbzohbxma',
     api_key: '289481138467442',
@@ -24,12 +25,17 @@ mongoose.connect('mongodb://127.0.0.1:27017/david-san')
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
+
+//Конфигурация названия файла. 
+//Я не использовал просто оригинальное имя файла, но с Cloudinary это больше не является проблемой, 
+//тем более когда мы загружаем по одной картинке
 const storage = multer.diskStorage({
     filename: function (req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname);
     }
 });
 
+//Эту штуку в доках отрыл, проверяет, отправляет ли пользователь картинку, а не другую ебалу
 const fileFilter = function (req, file, cb) {
     if (file.mimetype.startsWith('image/')) {
         cb(null, true);
@@ -84,11 +90,14 @@ app.post('/artworks', upload.single('image'), (req, res) => {
     const { title, description } = req.body;
     const image = req.file.path;
 
-    cloudinary.uploader.upload(image)
+    //Загрузка на Cloudinary + сжатие
+    cloudinary.uploader.upload(image, { quality: 80 })
         .then((result) => {
             const newArtwork = new Artwork({
                 title,
                 description,
+                //Ссылка и ID, которые возвращает Cloudinary
+                //присваиваем их полям в базе данных
                 image: result.secure_url,
                 cloudinaryId: result.public_id,
             });
@@ -113,14 +122,17 @@ app.put('/artworks/:id', upload.single('image'), async (req, res) => {
         if (!artwork) {
             return res.status(404).send('Artwork not found');
         }
+
         artwork.title = title;
         artwork.description = description;
+        //Если пользователь отметил галочкой, что нынешнюю картинку надо удалить
         if (deleteImage) {
             await cloudinary.uploader.destroy(artwork.cloudinaryId);
             artwork.image = null;
             artwork.cloudinaryId = null;
+        //Если пользователь выбрал новый файл
         } else if (req.file) {
-            const result = await cloudinary.uploader.upload(req.file.path);
+            const result = await cloudinary.uploader.upload(req.file.path, { quality: 80 });
             artwork.image = result.secure_url;
             artwork.cloudinaryId = result.public_id;
         }
@@ -128,6 +140,7 @@ app.put('/artworks/:id', upload.single('image'), async (req, res) => {
         res.redirect(`/artworks/${artwork._id}`);
     } catch (err) {
         console.error(err);
+        //Действия с файлами на случай ошибки загрузки
         if (req.file) {
             await cloudinary.uploader.destroy(artwork.cloudinaryId);
             artwork.image = null;
