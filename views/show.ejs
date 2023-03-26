@@ -14,6 +14,9 @@
   <img src="<%= artwork.image %>" alt="<%= artwork.title %>">
   <% } %>
   <p><%= artwork.description %></p>
+  <form action="/artworks/<%= artwork._id%>?_method=DELETE" method="POST">
+    <button type="submit">Delete</button>
+  </form>
   <a href="/artworks">Back to Artworks</a>
 </body>
 
