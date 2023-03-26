@@ -12,7 +12,8 @@ const artworkSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true
-    }
+    },
+    cloudinaryId: String
 });
 
 const Artwork = mongoose.model('Artwork', artworkSchema);
