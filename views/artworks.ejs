@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/stylesheets/artworks.css">
-  <title>Artworks</title>
-</head>
-
-<body>
-  <h1>Artworks</h1>
-  <ul>
-    <% for (let artwork of artworks) { %>
-    <li><a href="/artworks/<%= artwork._id %>"><%= artwork.title %></a></li>
-    <% } %>
-  </ul>
-  <a href="/artworks/new">Create a new artwork</a>
-</body>
-
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artworks</title>
+    <link rel="stylesheet" href="/stylesheets/artworks.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1>Artworks</h1>
+      <a href="/artworks/new">Create a new artwork</a>
+    </header>
+    <main>
+      <ul class="artworks">
+        <% for (let artwork of artworks) { %>
+        <li class="artwork">
+          <% if (artwork.image) { %>
+            <img src="<%= artwork.image %>" alt="<%= artwork.title %>">
+          <% } %>
+          <div class="artwork-details">
+            <h2><a href="/artworks/<%= artwork._id %>"><%= artwork.title %></a></h2>
+            <% if (artwork.description) { %>
+              <p><%= artwork.description %></p>
+            <% } %>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+    </main>
+  </body>
 </html>
