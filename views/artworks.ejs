@@ -1,33 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artworks</title>
-    <link rel="stylesheet" href="/stylesheets/artworks.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <h1>Artworks</h1>
-      <a href="/artworks/new">Create a new artwork</a>
-    </header>
-    <main>
-      <ul class="artworks">
-        <% for (let artwork of artworks) { %>
-        <li class="artwork">
-          <% if (artwork.image) { %>
-            <img src="<%= artwork.image %>" alt="<%= artwork.title %>">
-          <% } %>
-          <div class="artwork-details">
-            <h2><a href="/artworks/<%= artwork._id %>"><%= artwork.title %></a></h2>
-            <% if (artwork.description) { %>
-              <p><%= artwork.description %></p>
-            <% } %>
-          </div>
-        </li>
-        <% } %>
-      </ul>
-    </main>
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="stylesheets/artworks.css">
+	<title>David-San</title>
+</head>
+<body>
+	<nav id="navbar">
+		<ul>
+			<li>
+				<a href="/">Home</a>
+			</li>
+			<li>
+				<a href="/artworks">Arts</a>
+			</li>
+			<li>
+				<a href="/exhibitions">Exhibitions</a>
+			</li>
+			<li>
+				<a href="/about">About</a>
+			</li>
+			<li>
+				<a href="/contacts">Contact</a>
+			</li>
+		</ul>
+	</nav>
+	<img id="hamburger" src="staticImages/hamburger-black.png" alt="" width="50px" height="50px">
+
+	<h1>Artworks</h1>
+	<hr id="header-hr">
+
+	<div id="aw-container">
+	<% for(let artwork of artworks) { %>
+		<div class="artwork">
+			<img class="art-image" src="<%= artwork.image %>" alt="<%= artwork.title %>">
+			<h2 class="art-title"><a href="/artworks/<%= artwork._id %>"><%= artwork.title %></a></h2>
+			<p class="art-description"><%= artwork.description %></p>
+		</div>
+	<% } %>
+	</div>
+
+	<script src="scripts/navbar-top.js"></script>
+
+</body>
 </html>
