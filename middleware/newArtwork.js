@@ -23,6 +23,7 @@ module.exports = (req, res) => {
         })
         .catch((err) => {
             console.log(err);
+            cloudinary.uploader.destroy(req.file.filename.split(".")[0]);
             res.status(500).send('Error creating a new artwork');
         });
 };
