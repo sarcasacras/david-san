@@ -1,0 +1,24 @@
+#about-photo {
+    width: 80vw;
+    object-fit: cover;
+    margin-bottom: 60px;
+}
+#about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+pre {
+    text-align: center;
+    white-space: pre-line;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+h2 {
+    margin-bottom: 20px;
+    font-size: 35px;
+}
+h3 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
