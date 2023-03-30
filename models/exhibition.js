@@ -5,18 +5,32 @@ const exhibitionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    shortDescription: {
+        type: String,
+        required: false
+    },
     description: {
         type: String,
         required: true
     },
-    images: [{
+    thumbnail: {
         url: {
             type: String,
-            required: true
+            required: false
         },
         publicId: {
             type: String,
-            required: true
+            required: false
+        }
+    },
+    images: [{
+        url: {
+            type: String,
+            required: false
+        },
+        publicId: {
+            type: String,
+            required: false
         }
     }]
 });

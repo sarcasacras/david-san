@@ -15,12 +15,31 @@
     <label for="title">Title:</label>
     <input type="text" id="title" name="title" value="<%= exhibition.title %>">
     <br><br>
+
+    <label for="shortDescription">Short Description:</label>
+    <input type="text" name="shortDescription" id="shortDescription" value="<%= exhibition.shortDescription %>">
+    <br><br>
+
     <label for="description">Description:</label>
     <textarea id="description" name="description"><%= exhibition.description %></textarea>
     <br><br>
+
+    <label for="thumbnail">New Thumbnail:</label>
+    <input type="file" id="thumbnail" name="thumbnail">
+    <br><br>
+
+    <label for="current-thumbnail">Existing Thumbnail:</label>
+    <img src="<%= exhibition.thumbnail.url %>" alt="Exhibition Thumbnail" id="current-thumbnail">
+    <br>
+    <label>
+      <input type="checkbox" name="deleteThumbnail" value="<%= exhibition.thumbnail.publicId %>">
+      Remove Thumbnail
+    </label>
+
     <label for="images">New Images:</label>
     <input type="file" id="images" name="images" multiple>
     <br><br>
+
     <% if (exhibition.images.length > 0) { %>
     <label for="delete-images">Existing Images:</label>
     <ul id="delete-images">

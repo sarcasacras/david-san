@@ -37,12 +37,13 @@ router.get('/new', auth.requireAdmin, (req, res) => {
     res.render('exhibitions/new');
 });
 
-router.post('/', upload.array('images'), auth.requireAdmin, async (req, res) => {
-    const { title, description } = req.body;
+router.post('/', upload.fields([{ name: 'thumbnail', maxCount: 1 }, { name: 'images' }]), auth.requireAdmin, async (req, res) => {
+    const { title, shortDescription, description } = req.body;
     const images = [];
+    let thumbnail;
 
     try {
-        for (const file of req.files) {
+        for (const file of req.files.images) {
             const result = await cloudinary.uploader.upload(file.path, { quality: 80, format: 'webp' });
             images.push({
                 url: result.secure_url,
@@ -50,9 +51,20 @@ router.post('/', upload.array('images'), auth.requireAdmin, async (req, res) => 
             });
         }
 
+        if (req.files.thumbnail) {
+            const thumbnailFile = req.files.thumbnail[0];
+            const thumbnailResult = await cloudinary.uploader.upload(thumbnailFile.path, { quality: 80, format: 'webp' });
+            thumbnail = {
+                url: thumbnailResult.secure_url,
+                publicId: thumbnailResult.public_id
+            }
+        }
+
         const newExhibition = new Exhibition({
             title,
+            shortDescription,
             description,
+            thumbnail,
             images
         });
 
@@ -64,6 +76,10 @@ router.post('/', upload.array('images'), auth.requireAdmin, async (req, res) => 
 
         for (const image of images) {
             await cloudinary.uploader.destroy(image.publicId);
+        }
+
+        if (thumbnail) {
+            await cloudinary.uploader.destroy(thumbnail.publicId);
         }
 
         res.render('exhibitions/new', {
@@ -103,10 +119,11 @@ router.get('/:id', async (req, res) => {
 
 
 
-router.put('/:id', upload.array('images'), auth.requireAdmin, async (req, res) => {
+router.put('/:id', upload.fields([{ name: 'thumbnail', maxCount: 1 }, { name: 'images' }]), auth.requireAdmin, async (req, res) => {
     const { id } = req.params;
-    const { title, description, deleteImages } = req.body;
+    const { title, shortDescription, description, deleteImages, deleteThumbnail } = req.body;
     const newImages = [];
+    let newThumbnail;
 
     try {
         const exhibition = await Exhibition.findById(id);
@@ -122,16 +139,36 @@ router.put('/:id', upload.array('images'), auth.requireAdmin, async (req, res) =
             }
         }
 
+        // Delete thumbnail from Cloudinary if requested
+        if (deleteThumbnail) {
+            await cloudinary.uploader.destroy(exhibition.thumbnail.publicId);
+            exhibition.thumbnail = null;
+        }
+
+        // Upload new thumbnail to Cloudinary
+        if (req.files.thumbnail) {
+            const thumbnailFile = req.files.thumbnail[0];
+            const thumbnailResult = await cloudinary.uploader.upload(thumbnailFile.path, { quality: 80, format: 'webp' });
+            newThumbnail = {
+                url: thumbnailResult.secure_url,
+                publicId: thumbnailResult.public_id
+            };
+            exhibition.thumbnail = newThumbnail;
+        }
+
         // Upload new images to Cloudinary
-        for (const file of req.files) {
-            const result = await cloudinary.uploader.upload(file.path, { quality: 80, format: 'webp' });
-            newImages.push({
-                url: result.secure_url,
-                publicId: result.public_id
-            });
+        if (req.files.images) {
+            for (const file of req.files.images) {
+                const result = await cloudinary.uploader.upload(file.path, { quality: 80, format: 'webp' });
+                newImages.push({
+                    url: result.secure_url,
+                    publicId: result.public_id
+                });
+            }
         }
 
         exhibition.title = title;
+        exhibition.shortDescription = shortDescription;
         exhibition.description = description;
         exhibition.images.push(...newImages);
 
@@ -145,12 +182,15 @@ router.put('/:id', upload.array('images'), auth.requireAdmin, async (req, res) =
             await cloudinary.uploader.destroy(image.publicId);
         }
 
-        res.render('exhibitions/edit', {
-            exhibition: { ...exhibition, title, description },
-            errorMessage: 'Error updating exhibition'
-        });
+        if (newThumbnail) {
+            await cloudinary.uploader.destroy(newThumbnail.publicId);
+        }
+
+        res.redirect('/exhibitions');
     }
 });
+
+
 
 router.delete('/:id', auth.requireAdmin, async (req, res) => {
     const { id } = req.params;
@@ -159,9 +199,17 @@ router.delete('/:id', auth.requireAdmin, async (req, res) => {
         if (!exhibition) {
             return res.status(404).send('Exhibition not found');
         }
+
+        // Delete thumbnail from Cloudinary if it exists
+        if (exhibition.thumbnail) {
+            await cloudinary.uploader.destroy(exhibition.thumbnail.publicId);
+        }
+
+        // Delete images from Cloudinary
         for (const image of exhibition.images) {
             await cloudinary.uploader.destroy(image.publicId);
         }
+
         await Exhibition.findByIdAndDelete(id);
         res.redirect('/exhibitions');
     } catch (err) {
@@ -169,5 +217,6 @@ router.delete('/:id', auth.requireAdmin, async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
 
 module.exports = router;
