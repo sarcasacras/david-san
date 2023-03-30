@@ -13,12 +13,27 @@ pre {
     white-space: pre-line;
     font-size: 20px;
     margin-bottom: 20px;
+    font-family: 'Nunito', sans-serif;;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 h2 {
     margin-bottom: 20px;
     font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
 }
 h3 {
+    font-family: 'Montserrat', sans-serif;;
     font-size: 30px;
     margin-bottom: 10px;
+}
+@media(max-width: 900px) {
+    #about-photo {
+        width: 90vw;
+    }
+}
+@media(max-width: 500px) {
+    h2 {
+        font-size: 25px;
+    }
 }

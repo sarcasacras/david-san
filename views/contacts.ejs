@@ -2,24 +2,69 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacts</title>
-  <link rel="stylesheet" href="/stylesheets/footer.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+	<title>Contacts</title>
+	<link rel="stylesheet" href="stylesheets/contacts.css">
+	<link rel="stylesheet" href="stylesheets/navbar.css">
+	<link rel="stylesheet" href="/stylesheets/footer.css">
 </head>
 
 <body>
 
-  <body>
-    <h1 class="artist-name">Sergey Davidovich</h1>
+	<nav id="navbar">
+		<ul>
+			<li>
+				<a href="/">Home</a>
+			</li>
+			<li>
+				<a href="/artworks">Arts</a>
+			</li>
+			<li>
+				<a href="/exhibitions">Exhibitions</a>
+			</li>
+			<li>
+				<a href="/about">About</a>
+			</li>
+			<li>
+				<a href="/contacts">Contact</a>
+			</li>
+		</ul>
+	</nav>
+	<img id="hamburger" src="staticImages/hamburger-black.png" alt="" width="50px" height="50px">
+
+	<h1>Contact Me</h1>
+	<hr id="header-hr">
+
+	<section id="email-info">
+		<p id="email-desc">For cooperation, exhibitions organization and purchasing of the paintings contact:</p>
+		<p id="email">davidovich.sergey@gmail.com</p>
+	</section>
+
+	<h2>My social networks</h2>
+	<div id="social-networks">
+		<div class="social-network">
+			<a href="https://www.instagram.com/davidovich.sergey/"><img src="staticImages/instagram-icon.svg" alt="Instagram icon" width="90px" height="90px"></a>
+			<p>Instagram</p>
+		</div>
+		<div class="social-network">
+			<a href="https://www.facebook.com/davidovich.sergey"><img src="staticImages/facebook-icon.svg" alt="Facebook icon" width="90px" height="90px"></a>
+			<p>Facebook</p>
+		</div>
+	</div>
+
+    <!-- <h1 class="artist-name">Sergey Davidovich</h1>
     <p class="contact-info"><strong>Email:</strong> davidovich.sergey@gmail.com</p>
     <p class="contact-info"><strong>Instagram:</strong> <a href="https://www.instagram.com/davidovich.sergey/">Instagram</a></p>
     <p class="contact-info"><strong>Facebook:</strong> <a href="https://www.facebook.com/davidovich.sergey">Facebook</a></p>
-    <a href="/" class="back-button">Back</a>
+    <a href="/" class="back-button">Back</a> -->
 
     <%- include('partials/footer') %>
-  </body>
 </body>
 
 </html>

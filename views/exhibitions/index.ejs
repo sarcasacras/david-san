@@ -2,16 +2,54 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exhibitions</title>
-  <link rel="stylesheet" href="stylesheets/footer.css">
-  <link rel="stylesheet" href="stylesheets/exhibitions.css">
+  	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="stylesheets/navbar.css">
+    <link rel="stylesheet" href="stylesheets/about.css">
 </head>
 
 <body>
-  <h1>Exhibitions</h1>
+	<nav id="navbar">
+		<ul>
+			<li>
+				<a href="/">Home</a>
+			</li>
+			<li>
+				<a href="/artworks">Arts</a>
+			</li>
+			<li>
+				<a href="/exhibitions">Exhibitions</a>
+			</li>
+			<li>
+				<a href="/about">About</a>
+			</li>
+			<li>
+				<a href="/contacts">Contact</a>
+			</li>
+		</ul>
+	</nav>
+	<img id="hamburger" src="staticImages/hamburger-black.png" alt="" width="50px" height="50px">
+
+	<h1>Exhibitions</h1>
+	<hr id="header-hr">
+
+	<% for(let exhibition of exhibitions) { %>
+		<div>
+			<h2></h2>
+			<p></p>
+			<img src="" alt="">
+		</div>
+	<% } %>
+
+
+
+  <!-- <h1>Exhibitions</h1>
   <ul>
     <% exhibitions.forEach(function(exhibition) { %>
     <li>
@@ -29,7 +67,7 @@
     <% }); %>
   </ul>
   <a href="/exhibitions/new">Create New Exhibition</a>
-  <a href="/">Home</a>
+  <a href="/">Home</a> -->
   <%- include('../partials/footer') %>
 </body>
 
