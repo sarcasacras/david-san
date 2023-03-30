@@ -8,6 +8,8 @@ p {
 }
 #email-desc {
     margin-bottom: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
 }
 #email-info {
     margin-bottom: 100px;
@@ -26,4 +28,17 @@ h2 {
 }
 .social-network {
     margin: 50px;
+}
+
+@media(max-width: 500px) {
+    #email {
+        font-size: 25px;
+    }
+    h2 {
+        font-size: 25px;
+    }
+    img {
+        width: 70px;
+        height: 70px;
+    }
 }
