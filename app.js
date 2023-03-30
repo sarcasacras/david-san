@@ -55,7 +55,7 @@ app.get('/logout', (req, res) => {
     res.redirect('/'); //redirect to the previous page
 });
 
-app.get('/contact', (req, res) => {
+app.get('/contacts', (req, res) => {
     res.render('contacts');
 });
 

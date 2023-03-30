@@ -4,21 +4,25 @@
     margin: 0;
     padding: 0;
 }
+
 a {
     color: black;
 }
+
 nav {
     height: 50px;
     display: flex;
     justify-content: center;
     margin: 75px 0;
 }
+
 nav ul {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 50vw;
 }
+
 nav ul a {
     font-family: 'Nunito', sans-serif;
     letter-spacing: 2px;
@@ -26,19 +30,20 @@ nav ul a {
     color: black;
     position: relative;
 }
+
 nav ul a::before {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background-color: #333;
-  transition: all 0.3s ease-in-out;
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #333;
+    transition: all 0.3s ease-in-out;
 }
 
 nav ul a:hover::before {
-  width: 100%;
+    width: 100%;
 }
 
 h1 {
@@ -48,6 +53,7 @@ h1 {
     text-align: center;
     margin-bottom: 10px;
 }
+
 #header-hr {
     width: 30vw;
     height: 2px;
@@ -55,26 +61,50 @@ h1 {
     background-color: black;
     border: none;
 }
+
 #aw-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .artwork {
     font-family: 'Nunito', sans-serif;
     margin: 50px 0;
     text-align: center;
 }
+
 .artwork h2 {
     margin-bottom: 15px;
 }
+
 .artwork img {
     object-fit: cover;
     width: 50vw;
     margin-bottom: 20px;
 }
+
 #hamburger {
     display: none;
+}
+
+#show-more-btn {
+    display: inline-block;
+    background-color: white;
+    color: #000000;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px 24px;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: border-color 0.3s; 
+}
+
+#show-more-btn:hover {
+    border-bottom: 2px solid black;
 }
 
 @media (max-width: 900px) {
@@ -84,29 +114,36 @@ h1 {
         right: 2vw;
         top: 2vw;
     }
+
     nav {
         height: 0px;
         overflow: hidden;
         z-index: 100;
         transition: all 0.3s;
     }
+
     nav.active {
         height: 300px;
         border-bottom: 2px solid black;
     }
+
     nav ul {
         flex-direction: column;
     }
+
     nav ul a {
         opacity: 0;
         transition: 0.3s;
     }
+
     nav.active ul a {
         opacity: 100%;
     }
+
     h1 {
         margin-top: 80px;
     }
+
     .artwork img {
         width: 90vw;
     }
