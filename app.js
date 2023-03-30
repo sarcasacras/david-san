@@ -36,7 +36,7 @@ app.get('/about', (req, res) => {
 
 app.get('/login', (req, res) => {
     res.render('login');
-})
+});
 
 app.post('/login', (req, res) => {
     const username = req.body.username;
@@ -48,13 +48,17 @@ app.post('/login', (req, res) => {
     } else {
         res.send('Wrong password or username');
     }
-})
+});
 
 app.get('/logout', (req, res) => {
     req.session.admin = false;
     res.redirect('/'); //redirect to the previous page
-})
+});
+
+app.get('/contact', (req, res) => {
+    res.render('contacts');
+});
 
 app.listen(3000, () => {
-    console.log('Server started on port 3000')
-})
+    console.log('Server started on port 3000');
+});
