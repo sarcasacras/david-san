@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= exhibition.title %> - Exhibition</title>
+</head>
+<body>
+    <h1><%= exhibition.title %></h1>
+    <p><%= exhibition.description %></p>
+    <div class="image-container">
+        <% exhibition.images.forEach(function(image) { %>
+            <img src="<%= image.url %>" alt="<%= exhibition.title %>">
+        <% }) %>
+    </div>
+    <a href="/exhibitions/<%= exhibition._id %>/edit" class="btn">Edit</a>
+    <form action="/exhibitions/<%= exhibition._id %>?_method=DELETE" method="POST">
+        <button class="btn" type="submit">Delete</button>
+    </form>
+    <a href="/exhibitions" class="btn">Back</a>
+</body>
+</html>

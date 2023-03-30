@@ -9,21 +9,15 @@ const exhibitionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    location: {
-        type: String,
-        required: true
-    },
-    startDate: {
-        type: Date,
-        required: true
-    },
-    endDate: {
-        type: Date,
-        required: true
-    },
-    artworks: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Artwork'
+    images: [{
+        url: {
+            type: String,
+            required: true
+        },
+        publicId: {
+            type: String,
+            required: true
+        }
     }]
 });
 

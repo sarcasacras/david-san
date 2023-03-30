@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exhibitions</title>
+  <link rel="stylesheet" href="/stylesheets/exhibitions.css">
 </head>
 
 <body>
@@ -15,10 +16,14 @@
     <li>
       <%= exhibition.title %>
       <ul>
-        <% exhibition.artworks.forEach(function(artwork) { %>
-        <li><img src="<%= artwork.image %>" alt="<%= artwork.title %>"></li>
+        <% exhibition.images.forEach(function(image) { %>
+        <li><img src="<%= image.url %>" alt="<%= exhibition.title %>"></li>
         <% }); %>
       </ul>
+      <form action="/exhibitions/<%= exhibition._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+      <a href="/exhibitions/<%= exhibition._id %>/edit">Edit</a>
     </li>
     <% }); %>
   </ul>
