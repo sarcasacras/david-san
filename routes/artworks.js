@@ -6,6 +6,8 @@ const cloudinary = require('cloudinary').v2;
 const updateArtwork = require('../middleware/updateArtwork');
 const deleteArtwork = require('../middleware/deleteArtwork');
 const newArtwork = require('../middleware/newArtwork');
+const auth = require('../middleware/auth');
+const session = require('express-session');
 
 //Эти данные должны потом находится в .env файле
 cloudinary.config({
@@ -45,7 +47,7 @@ router.get('/', (req, res) => {
         })
 })
 
-router.get('/new', (req, res) => {
+router.get('/new', auth.requireAdmin, (req, res) => {
     res.render('new');
 })
 
@@ -60,7 +62,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', auth.requireAdmin, async (req, res) => {
     try {
         const artwork = await Artwork.findById(req.params.id);
         res.render('edit', { artwork });
@@ -70,10 +72,10 @@ router.get('/:id/edit', async (req, res) => {
     }
 });
 
-router.post('/', upload.single('image'), newArtwork);
+router.post('/', upload.single('image'), auth.requireAdmin, newArtwork);
 
-router.put('/:id', upload.single('image'), updateArtwork);
+router.put('/:id', upload.single('image'), auth.requireAdmin, updateArtwork);
 
-router.delete('/:id', deleteArtwork);
+router.delete('/:id', auth.requireAdmin, deleteArtwork);
 
 module.exports = router;

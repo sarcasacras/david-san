@@ -4,6 +4,8 @@ const Exhibition = require('../models/exhibition');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const methodOverride = require('method-override');
+const auth = require('../middleware/auth');
+const session = require('express-session');
 
 cloudinary.config({
     cloud_name: 'dbzohbxma',
@@ -31,11 +33,11 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/new', (req, res) => {
+router.get('/new', auth.requireAdmin, (req, res) => {
     res.render('exhibitions/new');
 });
 
-router.post('/', upload.array('images'), async (req, res) => {
+router.post('/', upload.array('images'), auth.requireAdmin, async (req, res) => {
     const { title, description } = req.body;
     const images = [];
 
@@ -71,7 +73,7 @@ router.post('/', upload.array('images'), async (req, res) => {
     }
 });
 
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', auth.requireAdmin, async (req, res) => {
     const { id } = req.params;
     try {
         const exhibition = await Exhibition.findById(id);
@@ -101,7 +103,7 @@ router.get('/:id', async (req, res) => {
 
 
 
-router.put('/:id', upload.array('images'), async (req, res) => {
+router.put('/:id', upload.array('images'), auth.requireAdmin, async (req, res) => {
     const { id } = req.params;
     const { title, description, deleteImages } = req.body;
     const newImages = [];
@@ -150,7 +152,7 @@ router.put('/:id', upload.array('images'), async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth.requireAdmin, async (req, res) => {
     const { id } = req.params;
     try {
         const exhibition = await Exhibition.findById(id);

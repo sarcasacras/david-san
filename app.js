@@ -5,6 +5,14 @@ const app = express();
 const methodOverride = require('method-override');
 const artworksRouter = require('./routes/artworks');
 const exhibitionsRouter = require('./routes/exhibitions');
+const auth = require('./middleware/auth');
+const session = require('express-session');
+
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+}));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
@@ -25,6 +33,27 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
     res.render('about');
 });
+
+app.get('/login', (req, res) => {
+    res.render('login');
+})
+
+app.post('/login', (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    if (auth.authenticateAdmin(username, password)) {
+        req.session.admin = true;
+        res.redirect('/');
+    } else {
+        res.send('Wrong password or username');
+    }
+})
+
+app.get('/logout', (req, res) => {
+    req.session.admin = false;
+    res.redirect('/'); //redirect to the previous page
+})
 
 app.listen(3000, () => {
     console.log('Server started on port 3000')
