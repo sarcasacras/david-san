@@ -16,7 +16,7 @@
 }
 
 .exhibition img {
-    width: 40vw;
+    width: 500px;
 }
 
 .exhibition {
@@ -25,6 +25,15 @@
     align-items: center;
     border-top: 2px solid #ececec;
     margin-bottom: 20px;
+}
+
+.exh-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+}
+.exh-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
 }
 
 .exhibition:first-child {
@@ -74,4 +83,10 @@
 
 #show-more-btn:hover {
     border-bottom: 2px solid black;
+}
+
+@media screen and (max-width: 550px) {
+    .exhibition img {
+        width: 90vw;
+    }
 }

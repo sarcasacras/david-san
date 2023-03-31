@@ -7,6 +7,7 @@ const artworksRouter = require('./routes/artworks');
 const exhibitionsRouter = require('./routes/exhibitions');
 const auth = require('./middleware/auth');
 const session = require('express-session');
+const Exhibition = require('./models/exhibition');
 
 app.use(session({
     secret: process.env.SECRET,

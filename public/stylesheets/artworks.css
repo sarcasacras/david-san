@@ -47,19 +47,18 @@ nav ul a:hover::before {
 }
 
 h1 {
+    margin: 0 auto;
+    width: fit-content;
+    text-align: center;
     letter-spacing: 3px;
     font-family: 'Montserrat', sans-serif;
     font-size: 50px;
     text-align: center;
-    margin-bottom: 10px;
-}
-
-#header-hr {
-    width: 30vw;
-    height: 2px;
-    margin: 0 auto 60px auto;
-    background-color: black;
-    border: none;
+    margin-bottom: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
 }
 
 #aw-container {
