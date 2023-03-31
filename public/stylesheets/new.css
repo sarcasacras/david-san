@@ -9,7 +9,7 @@ h1 {
     text-align: center;
 }
 
-form {
+.container {
     max-width: 500px;
     margin: 0 auto;
     background-color: #fff;
@@ -52,4 +52,42 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #3e8e41;
+}
+
+input[type="file"] {
+    margin: 20px 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+/* To style images inside the form, if any */
+form img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.delete[type="submit"] {
+    background-color: rgb(255, 74, 43);
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+.delete[type="submit"]:hover {
+    background-color: rgb(136, 32, 13);
 }

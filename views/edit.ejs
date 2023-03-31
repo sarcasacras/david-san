@@ -11,14 +11,14 @@
 
 <body>
   <h1>Edit <%= artwork.title %></h1>
+  <div class="container">
+    <form action="/artworks/<%= artwork._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" value="<%= artwork.title %>" required>
+      <br>
 
-  <form action="/artworks/<%= artwork._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" value="<%= artwork.title %>" required>
-    <br>
-
-    <label for="image">Image:</label>
-    <% if (artwork.cloudinaryId) { %>
+      <label for="image">Image:</label>
+      <% if (artwork.cloudinaryId) { %>
       <img src="<%= artwork.image %>" alt="<%= artwork.title %>" style="max-width: 400px;">
       <br>
       <label for="deleteImage">
@@ -26,16 +26,21 @@
         Delete current image
       </label>
       <br>
-    <% } %>
-    <input type="file" id="image" name="image" accept="image/*">
-    <br>
+      <% } %>
+      <input type="file" id="image" name="image" accept="image/*">
+      <br>
 
-    <label for="description">Description:</label>
-    <textarea name="description" id="description" required><%= artwork.description %></textarea>
-    <br>
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" required><%= artwork.description %></textarea>
+      <br>
 
-    <button type="submit">Update Artwork</button>
-  </form>
+      <button type="submit">Update Artwork</button>
+    </form>
+    <form action="/artworks/<%= artwork._id %>?_method=DELETE" method="POST">
+      <button type="submit" class="delete">Delete</button>
+    </form>
+  </div>
+
 </body>
 
 </html>

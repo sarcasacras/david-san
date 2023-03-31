@@ -13,26 +13,7 @@
 	<title>David-San</title>
 </head>
 <body>
-	<nav id="navbar">
-		<ul>
-			<li>
-				<a href="/">Home</a>
-			</li>
-			<li>
-				<a href="/artworks">Arts</a>
-			</li>
-			<li>
-				<a href="/exhibitions">Exhibitions</a>
-			</li>
-			<li>
-				<a href="/about">About</a>
-			</li>
-			<li>
-				<a href="/contacts">Contact</a>
-			</li>
-		</ul>
-	</nav>
-	<img id="hamburger" src="staticImages/hamburger-black.png" alt="" width="50px" height="50px">
+	<%- include('partials/navbar') %>
 
 	<h1>Artworks</h1>
 	<hr id="header-hr">
@@ -43,6 +24,7 @@
 			<img class="art-image" src="<%= artwork.image %>" alt="<%= artwork.title %>">
 			<h2 class="art-title"><a href="/artworks/<%= artwork._id %>"><%= artwork.title %></a></h2>
 			<p class="art-description"><%= artwork.description %></p>
+			<p class="edit-button"><a href="/artworks/<%= artwork._id %>/edit">Edit artwork</a></p>
 		</div>
 	<% } %>
 	<button id="show-more-btn">Show More</button>

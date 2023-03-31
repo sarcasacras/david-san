@@ -17,6 +17,11 @@ pre {
     margin-left: 40px;
     margin-right: 40px;
 }
+
+pre:last-of-type {
+    margin-bottom: 60px;
+}
+
 h2 {
     margin-bottom: 20px;
     font-size: 35px;

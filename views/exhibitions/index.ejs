@@ -15,26 +15,7 @@
 </head>
 
 <body>
-	<nav id="navbar">
-		<ul>
-			<li>
-				<a href="/">Home</a>
-			</li>
-			<li>
-				<a href="/artworks">Arts</a>
-			</li>
-			<li>
-				<a href="/exhibitions">Exhibitions</a>
-			</li>
-			<li>
-				<a href="/about">About</a>
-			</li>
-			<li>
-				<a href="/contacts">Contact</a>
-			</li>
-		</ul>
-	</nav>
-	<img id="hamburger" src="staticImages/hamburger-black.png" alt="" width="50px" height="50px">
+	<%- include('../partials/navbar') %>
 
 	<h1>Exhibitions</h1>
 	<hr id="header-hr">
@@ -44,12 +25,12 @@
 			<div class="exhibition">
 				<h2 class="exh-title"><%= exhibition.title %></h2>
 				<p class="exh-desc"><%= exhibition.description %></p>
-				<a href="/exhibitions/<%= exhibition._id %>/edit"><img src="<%= exhibition.images[0].url %>" alt=""></a>
-				<form action="/exhibitions/<%= exhibition._id %>?_method=DELETE" method="POST">
-					<button type="submit">Delete</button>
-				</form>
+				<a href="/exhibitions/<%= exhibition._id %>"><img src="<%= exhibition.images[0].url %>" alt=""></a>
+				<p class="edit-button"><a href="/exhibitions/<%= exhibition._id %>/edit">Edit exhibition</a></p>
 			</div>
 		<% } %>
+
+		<button id="show-more-btn">Show More</button>
 	</div>
 
 
@@ -74,6 +55,8 @@
   <a href="/exhibitions/new">Create New Exhibition</a>
   <a href="/">Home</a> -->
   <%- include('../partials/footer') %>
+
+  <script src="scripts/show-more-exhibitions.js"></script>
 </body>
 
 </html>

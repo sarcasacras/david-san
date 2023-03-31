@@ -19,7 +19,7 @@ showMoreBtn.addEventListener('click', () => {
     numArtworks += 3;
     for (let i = displayedArtworks; i < artworks.length; i++) {
         if (i < numArtworks) {
-            artworks[i].style.display = 'block';
+            artworks[i].style.display = 'flex';
         } else {
             artworks[i].style.display = 'none';
         }
@@ -34,5 +34,5 @@ showMoreBtn.addEventListener('click', () => {
 
 // Если не все уже отображаются - показать кнопку
 if (artworks.length > numArtworks) {
-    showMoreBtn.style.display = 'block';
+    showMoreBtn.style.display = 'flex';
 }

@@ -16,7 +16,7 @@
   <% } %>
   <p><%= artwork.description %></p>
   <form action="/artworks/<%= artwork._id%>?_method=DELETE" method="POST">
-    <button type="submit">Delete</button>
+    <button type="submit" class="delete">Delete</button>
   </form>
   <a href="/artworks">Back to Artworks</a>
   <a href="/artworks/<%= artwork._id %>/edit">Edit</a>
