@@ -42,6 +42,7 @@
     transition: box-shadow 0.2s ease-in-out;
     background-color: white;
     border: none;
+    cursor: pointer;
 }
 
 .btn:hover {
