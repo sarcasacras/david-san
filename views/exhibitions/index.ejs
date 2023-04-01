@@ -23,7 +23,7 @@
 		<% for(let exhibition of exhibitions) { %>
 			<div class="exhibition">
 				<h2 class="exh-title"><%= exhibition.title %></h2>
-				<p class="exh-desc"><%= exhibition.description %></p>
+				<p class="exh-desc"><%= exhibition.shortDescription %></p>
 				<a href="/exhibitions/<%= exhibition._id %>"><img src="<%= exhibition.thumbnail.url %>" alt=""></a>
 				<!-- <p class="edit-button"><a href="/exhibitions/<%= exhibition._id %>/edit">Edit exhibition</a></p> -->
 			</div>

@@ -19,14 +19,16 @@ module.exports = async (req, res, next) => {
             await cloudinary.uploader.destroy(artwork.cloudinaryId);
             artwork.image = null;
             artwork.cloudinaryId = null;
-            //Если пользователь выбрал новый файл
-        } else if (req.file) {
+        } 
+        //Если пользователь выбрал новый файл
+        if (req.file) {
             const result = await cloudinary.uploader.upload(req.file.path, { quality: 80 });
             artwork.image = result.secure_url;
             artwork.cloudinaryId = result.public_id;
         }
+
         await artwork.save();
-        res.redirect(`/artworks/${artwork._id}`);
+        res.redirect('/artworks');
     } catch (err) {
         console.error(err);
         //Действия с файлами на случай ошибки загрузки
