@@ -90,4 +90,8 @@
     .exhibition img {
         width: 90vw;
     }
+
+    .exh-heading {
+        border-bottom: none;
+    }
 }
