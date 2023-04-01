@@ -20,6 +20,34 @@
     width: 1000px;
 }
 
+.content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.2s ease-in-out;
+    background-color: white;
+    border: none;
+}
+
+.btn:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
 @media only screen and (max-width: 1100px) {
     .image-container img {
         width: 80vw;

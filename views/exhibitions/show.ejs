@@ -17,7 +17,7 @@
 
 <body>
   <%- include('../partials/navbar') %>
-  
+
   <h1><%= exhibition.title %></h1>
 
   <div class="content-container">
@@ -31,15 +31,15 @@
       <img src="<%= image.url %>" alt="<%= exhibition.title %>">
       <% }) %>
     </div>
-
-    <a href="/exhibitions/<%= exhibition._id %>/edit" class="btn">Edit</a>
-    <form action="/exhibitions/<%= exhibition._id %>?_method=DELETE" method="POST">
-      <button class="btn" type="submit">Delete</button>
-    </form>
-    <a href="/exhibitions" class="btn">Back</a>
-
+    <div class="buttons">
+      <a href="/exhibitions/<%= exhibition._id %>/edit" class="btn">Edit</a>
+      <form action="/exhibitions/<%= exhibition._id %>?_method=DELETE" method="POST">
+        <button class="btn" type="submit">Delete</button>
+      </form>
+      <a href="/exhibitions" class="btn">Back</a>
+    </div>
   </div>
-  
+
   <script src="/scripts/navbar-top.js"></script>
 
   <%- include('../partials/footer') %>
