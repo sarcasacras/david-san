@@ -109,7 +109,7 @@ router.get('/:id', async (req, res) => {
         if (!exhibition) {
             return res.status(404).send('Exhibition not found');
         }
-        res.render('exhibitions/show', { exhibition });
+        res.render('exhibitions/show', { exhibition, session: req.session });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server error');

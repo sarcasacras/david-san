@@ -39,7 +39,7 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 router.get('/', (req, res) => {
     Artwork.find()
         .then((artworks) => {
-            res.render('artworks', { artworks });
+            res.render('artworks', { artworks, session: req.session });
         })
         .catch((err) => {
             console.log(err);
@@ -50,17 +50,6 @@ router.get('/', (req, res) => {
 router.get('/new', auth.requireAdmin, (req, res) => {
     res.render('new');
 })
-
-router.get('/:id', (req, res) => {
-    Artwork.findById(req.params.id)
-        .then((artwork) => {
-            res.render('show', { artwork });
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).send('Error retrieving artwork');
-        });
-});
 
 router.get('/:id/edit', auth.requireAdmin, async (req, res) => {
     try {

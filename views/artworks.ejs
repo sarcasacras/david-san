@@ -22,16 +22,19 @@
 
 
   <div id="aw-container">
-    <% for(let artwork of artworks) { %>
-    <div class="artwork">
-      <img class="art-image" src="<%= artwork.image %>" alt="<%= artwork.title %>">
-      <h2 class="art-title"><a href="/artworks/<%= artwork._id %>"><%= artwork.title %></a></h2>
-      <p class="art-description"><%= artwork.description %></p>
-      <p class="edit-button"><a href="/artworks/<%= artwork._id %>/edit">Edit artwork</a></p>
-    </div>
-    <% } %>
-    <button id="show-more-btn">Show More</button>
+	<% for(let artwork of artworks) { %>
+	<div class="artwork">
+	  <img class="art-image" src="<%= artwork.image %>" alt="<%= artwork.title %>">
+	  <h2 class="art-title"><%= artwork.title %></h2>
+	  <p class="art-description"><%= artwork.description %></p>
+	  <% if (session.admin) { %>
+		<p class="edit-button"><a href="/artworks/<%= artwork._id %>/edit">Edit artwork</a></p>
+	  <% } %>
+	</div>
+	<% } %>
+	<button id="show-more-btn">Show More</button>
   </div>
+  
 
   <%- include('partials/footer') %>
 

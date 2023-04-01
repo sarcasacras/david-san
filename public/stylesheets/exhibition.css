@@ -3,13 +3,15 @@
     text-align: center;
     font-family: 'Nunito', sans-serif; /* Cursive must be added!!! */
     margin-bottom: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 #norm-desc {
     font-size: 30px;
     text-align: center;
     margin-bottom: 50px;
     font-family: 'Nunito', sans-serif;
-    padding: 40px;
+    padding: 80px;
 }
 .image-container {
     display: flex;
@@ -50,11 +52,55 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
 
+.edit-btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.2s ease-in-out;
+    background-color: rgb(255, 249, 229);
+    border: none;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.delete-btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.2s ease-in-out;
+    background-color: rgb(255, 239, 239);
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
 @media only screen and (max-width: 1100px) {
     .image-container img {
         width: 80vw;
     }
     h1 {
         font-size: 35px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #norm-desc {
+        font-size: 20px;
+    }
+
+    #short-desc {
+        font-size: 14px;
     }
 }

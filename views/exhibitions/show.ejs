@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../stylesheets/navbar.css">
   <link rel="stylesheet" href="../stylesheets/exhibition.css">
   <link rel="stylesheet" href="../stylesheets/footer.css">
+  <link rel="stylesheet" href="../stylesheets/to-the-top.css">
 </head>
 
 <body>
@@ -20,27 +21,34 @@
 
   <h1><%= exhibition.title %></h1>
 
+  <a href="#top" class="to-the-top"><img src="../staticImages/up-arrow.svg" alt="up arrow"></a>
+
   <div class="content-container">
 
     <p id="short-desc"><%= exhibition.shortDescription %></p>
-
+  
     <p id="norm-desc"><%= exhibition.description %></p>
-
+  
     <div class="image-container">
       <% exhibition.images.forEach(function(image) { %>
       <img src="<%= image.url %>" alt="<%= exhibition.title %>">
       <% }) %>
     </div>
-    <div class="buttons">
-      <a href="/exhibitions/<%= exhibition._id %>/edit" class="btn">Edit</a>
-      <form action="/exhibitions/<%= exhibition._id %>?_method=DELETE" method="POST">
-        <button class="btn" type="submit">Delete</button>
-      </form>
-      <a href="/exhibitions" class="btn">Back</a>
-    </div>
+    
+    <% if (session.admin) { %>
+      <div class="buttons">
+        <a href="/exhibitions/<%= exhibition._id %>/edit" class="edit-btn">Edit</a>
+        <form action="/exhibitions/<%= exhibition._id %>?_method=DELETE" method="POST">
+          <button class="delete-btn" type="submit">Delete</button>
+        </form>
+      </div>
+    <% } %>
+  
+    <a href="/exhibitions" class="btn">Back</a>
   </div>
 
   <script src="/scripts/navbar-top.js"></script>
+  <script src="/scripts/to-the-top.js"></script>
 
   <%- include('../partials/footer') %>
 
