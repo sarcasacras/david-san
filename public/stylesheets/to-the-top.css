@@ -22,3 +22,9 @@ html {
     cursor: pointer;
     opacity: 1;
 }
+
+@media only screen and (max-width: 900px) {
+    .shown {
+        display: none;
+    }
+}

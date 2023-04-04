@@ -7,7 +7,8 @@ const artworksRouter = require('./routes/artworks');
 const exhibitionsRouter = require('./routes/exhibitions');
 const auth = require('./middleware/auth');
 const session = require('express-session');
-const Exhibition = require('./models/exhibition');
+const helmet = require('helmet');
+
 
 app.use(session({
     secret: process.env.SECRET,
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 app.use('/artworks', artworksRouter);
 app.use('/exhibitions', exhibitionsRouter);
+app.use(helmet());
 
 mongoose.connect('mongodb://127.0.0.1:27017/david-san')
     .then(() => console.log('MongoDB connected'))
