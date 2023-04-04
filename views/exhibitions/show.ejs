@@ -12,6 +12,7 @@
   <title><%= exhibition.title %> - Exhibition</title>
   <link rel="stylesheet" href="../stylesheets/navbar.css">
   <link rel="stylesheet" href="../stylesheets/exhibition.css">
+  <link rel="stylesheet" href="../stylesheets/lightbox.css">
   <link rel="stylesheet" href="../stylesheets/footer.css">
   <link rel="stylesheet" href="../stylesheets/to-the-top.css">
 </head>
@@ -31,7 +32,7 @@
   
     <div class="image-container">
       <% exhibition.images.forEach(function(image) { %>
-      <img src="<%= image.url %>" alt="<%= exhibition.title %>">
+      <a href="<%= image.url %>" data-lightbox="exhibition"><img src="<%= image.url %>" alt="<%= exhibition.title %>"></a>
       <% }) %>
     </div>
     
@@ -48,6 +49,7 @@
   </div>
 
   <script src="/scripts/navbar-top.js"></script>
+  <script src="/scripts/lightbox-plus-jquery.js"></script>
   <script src="/scripts/to-the-top.js"></script>
 
   <%- include('../partials/footer') %>
