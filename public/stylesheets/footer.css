@@ -1,3 +1,4 @@
+
 .footer {
     /* background-color: aliceblue; */
     background: linear-gradient(to bottom, #fff, #d8d8d8);
@@ -19,11 +20,6 @@
     text-decoration: none;
     position: relative;
     font-weight: 800;
-}
-
-.footer-link {
-    margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 .link::after {
@@ -49,4 +45,19 @@
     align-items: center;
     justify-content: space-around;
     height: 160px;
+}
+
+.footer-link {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Make the container take at least the full viewport height */
+    box-sizing: border-box;
+    padding: 2rem; /* Add some padding to prevent content from touching the edges */
 }

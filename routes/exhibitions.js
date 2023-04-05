@@ -23,13 +23,13 @@ const upload = multer({ storage: storage });
 
 router.use(methodOverride('_method'));
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     try {
         const exhibitions = await Exhibition.find();
         res.render('exhibitions/index', { exhibitions });
     } catch (err) {
         console.error(err);
-        res.status(500).send('Server Error');
+        next(err);
     }
 });
 
@@ -89,7 +89,7 @@ router.post('/', upload.fields([{ name: 'thumbnail', maxCount: 1 }, { name: 'ima
     }
 });
 
-router.get('/:id/edit', auth.requireAdmin, async (req, res) => {
+router.get('/:id/edit', auth.requireAdmin, async (req, res, next) => {
     const { id } = req.params;
     try {
         const exhibition = await Exhibition.findById(id);
@@ -99,11 +99,11 @@ router.get('/:id/edit', auth.requireAdmin, async (req, res) => {
         res.render('exhibitions/edit', { exhibition });
     } catch (err) {
         console.log(err);
-        res.status(500).send('Server error!');
+        next(err);
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
     try {
         const exhibition = await Exhibition.findById(req.params.id);
         if (!exhibition) {
@@ -112,12 +112,9 @@ router.get('/:id', async (req, res) => {
         res.render('exhibitions/show', { exhibition, session: req.session });
     } catch (err) {
         console.error(err);
-        res.status(500).send('Server error');
+        next(err);
     }
 });
-
-
-
 
 router.put('/:id', upload.fields([{ name: 'thumbnail', maxCount: 1 }, { name: 'images' }]), auth.requireAdmin, async (req, res) => {
     const { id } = req.params;
@@ -192,7 +189,7 @@ router.put('/:id', upload.fields([{ name: 'thumbnail', maxCount: 1 }, { name: 'i
 
 
 
-router.delete('/:id', auth.requireAdmin, async (req, res) => {
+router.delete('/:id', auth.requireAdmin, async (req, res, next) => {
     const { id } = req.params;
     try {
         const exhibition = await Exhibition.findById(id);
@@ -214,7 +211,7 @@ router.delete('/:id', auth.requireAdmin, async (req, res) => {
         res.redirect('/exhibitions');
     } catch (err) {
         console.error(err);
-        res.status(500).send('Server error');
+        next(err);
     }
 });
 

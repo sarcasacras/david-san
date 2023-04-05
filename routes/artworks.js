@@ -36,28 +36,27 @@ const fileFilter = function (req, file, cb) {
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
-router.get('/', (req, res) => {
-    Artwork.find()
-        .then((artworks) => {
-            res.render('artworks', { artworks, session: req.session });
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).send('Error retrieving artworks');
-        })
-})
+router.get('/', async (req, res, next) => {
+    try {
+        const artworks = await Artwork.find();
+        res.render('artworks', { artworks, session: req.session });
+    } catch (err) {
+        console.log(err);
+        next(err); // Pass the error to the error handling middleware
+    }
+});
 
 router.get('/new', auth.requireAdmin, (req, res) => {
     res.render('new');
 })
 
-router.get('/:id/edit', auth.requireAdmin, async (req, res) => {
+router.get('/:id/edit', auth.requireAdmin, async (req, res, next) => {
     try {
         const artwork = await Artwork.findById(req.params.id);
         res.render('edit', { artwork });
     } catch (err) {
         console.log(err);
-        res.redirect('/');
+        next(err); // Pass the error to the error handling middleware
     }
 });
 

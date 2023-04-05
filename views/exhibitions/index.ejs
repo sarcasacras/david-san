@@ -25,34 +25,12 @@
 				<h2 class="exh-title"><%= exhibition.title %></h2>
 				<p class="exh-desc"><%= exhibition.shortDescription %></p>
 				<a href="/exhibitions/<%= exhibition._id %>"><img src="<%= exhibition.thumbnail.url %>" alt=""></a>
-				<!-- <p class="edit-button"><a href="/exhibitions/<%= exhibition._id %>/edit">Edit exhibition</a></p> -->
 			</div>
 		<% } %>
 
 		<button id="show-more-btn">Show More</button>
 	</div>
 
-
-
-  <!-- <h1>Exhibitions</h1>
-  <ul>
-    <% exhibitions.forEach(function(exhibition) { %>
-    <li>
-      <%= exhibition.title %>
-      <ul>
-        <% exhibition.images.forEach(function(image) { %>
-        <li><img src="<%= image.url %>" alt="<%= exhibition.title %>"></li>
-        <% }); %>
-      </ul>
-      <form action="/exhibitions/<%= exhibition._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete</button>
-      </form>
-      <a href="/exhibitions/<%= exhibition._id %>/edit">Edit</a>
-    </li>
-    <% }); %>
-  </ul>
-  <a href="/exhibitions/new">Create New Exhibition</a>
-  <a href="/">Home</a> -->
   <%- include('../partials/footer') %>
 
   <script src="scripts/show-more-exhibitions.js"></script>

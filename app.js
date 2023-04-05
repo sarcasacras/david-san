@@ -62,6 +62,23 @@ app.get('/contacts', (req, res) => {
     res.render('contacts');
 });
 
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
+// 404 error handler
+app.use((req, res, next) => {
+    const err = new Error('Page not found');
+    err.status = 404;
+    next(err);
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    const status = err.status || 500;
+    const errorMessage = err.message || 'Internal Server Error';
+    console.error(`[${new Date().toISOString()}] ${status} ${errorMessage}`);
+    res.status(status);
+    res.render(`errors/${status}`, { error: errorMessage });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
 });
