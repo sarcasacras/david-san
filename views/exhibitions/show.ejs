@@ -10,11 +10,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
   <title><%= exhibition.title %> - Exhibition</title>
-  <link rel="stylesheet" href="../stylesheets/navbar.css">
-  <link rel="stylesheet" href="../stylesheets/exhibition.css">
-  <link rel="stylesheet" href="../stylesheets/lightbox.css">
-  <link rel="stylesheet" href="../stylesheets/footer.css">
-  <link rel="stylesheet" href="../stylesheets/to-the-top.css">
+  <link rel="stylesheet" href="/stylesheets/navbar.css">
+  <link rel="stylesheet" href="/stylesheets/exhibition.css">
+  <link rel="stylesheet" href="/stylesheets/lightbox.css">
+  <link rel="stylesheet" href="/stylesheets/footer.css">
+  <link rel="stylesheet" href="/stylesheets/to-the-top.css">
 </head>
 
 <body>
@@ -22,13 +22,13 @@
 
   <h1><%= exhibition.title %></h1>
 
-  <a href="#top" class="to-the-top"><img src="../staticImages/up-arrow.svg" alt="up arrow"></a>
+  <a href="#top" class="to-the-top"><img src="/staticImages/up-arrow.svg" alt="up arrow"></a>
 
   <div class="content-container">
 
-    <p id="short-desc"><%= exhibition.shortDescription %></p>
+    <pre id="short-desc"><%= exhibition.shortDescription %></pre>
   
-    <p id="norm-desc"><%= exhibition.description %></p>
+    <pre id="norm-desc"><%= exhibition.description %></pre>
   
     <div class="image-container">
       <% exhibition.images.forEach(function(image) { %>
@@ -48,9 +48,9 @@
     <a href="/exhibitions" class="btn">Back</a>
   </div>
 
-  <script src="../scripts/navbar-top.js"></script>
-  <script src="../scripts/lightbox-plus-jquery.js"></script>
-  <script src="../scripts/to-the-top.js"></script>
+  <script src="/scripts/navbar-top.js"></script>
+  <script src="/scripts/lightbox-plus-jquery.js"></script>
+  <script src="/scripts/to-the-top.js"></script>
 
   <%- include('../partials/footer') %>
 

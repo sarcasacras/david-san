@@ -44,7 +44,7 @@ router.post('/', upload.fields([{ name: 'thumbnail', maxCount: 1 }, { name: 'ima
 
     try {
         for (const file of req.files.images) {
-            const result = await cloudinary.uploader.upload(file.path, { quality: 40, format: 'webp' });
+            const result = await cloudinary.uploader.upload(file.path, { quality: 70, format: 'webp' });
             images.push({
                 url: result.secure_url,
                 publicId: result.public_id
@@ -53,7 +53,7 @@ router.post('/', upload.fields([{ name: 'thumbnail', maxCount: 1 }, { name: 'ima
 
         if (req.files.thumbnail) {
             const thumbnailFile = req.files.thumbnail[0];
-            const thumbnailResult = await cloudinary.uploader.upload(thumbnailFile.path, { quality: 40, format: 'webp' });
+            const thumbnailResult = await cloudinary.uploader.upload(thumbnailFile.path, { quality: 70, format: 'webp' });
             thumbnail = {
                 url: thumbnailResult.secure_url,
                 publicId: thumbnailResult.public_id
@@ -145,7 +145,7 @@ router.put('/:id', upload.fields([{ name: 'thumbnail', maxCount: 1 }, { name: 'i
         // Upload new thumbnail to Cloudinary
         if (req.files.thumbnail) {
             const thumbnailFile = req.files.thumbnail[0];
-            const thumbnailResult = await cloudinary.uploader.upload(thumbnailFile.path, { quality: 40, format: 'webp' });
+            const thumbnailResult = await cloudinary.uploader.upload(thumbnailFile.path, { quality: 70, format: 'webp' });
             newThumbnail = {
                 url: thumbnailResult.secure_url,
                 publicId: thumbnailResult.public_id
@@ -156,7 +156,7 @@ router.put('/:id', upload.fields([{ name: 'thumbnail', maxCount: 1 }, { name: 'i
         // Upload new images to Cloudinary
         if (req.files.images) {
             for (const file of req.files.images) {
-                const result = await cloudinary.uploader.upload(file.path, { quality: 40, format: 'webp' });
+                const result = await cloudinary.uploader.upload(file.path, { quality: 70, format: 'webp' });
                 newImages.push({
                     url: result.secure_url,
                     publicId: result.public_id

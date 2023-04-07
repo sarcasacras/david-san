@@ -32,6 +32,15 @@
     font-family: 'Nunito', sans-serif;
     font-size: 30px;
 }
+
+.exh-link {
+    transition: 0.3s;
+}
+
+.exh-link:hover {
+    color: rgb(238, 158, 68);
+}
+
 .exh-desc {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
