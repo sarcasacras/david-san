@@ -26,7 +26,7 @@ app.use('/artworks', artworksRouter);
 app.use('/exhibitions', exhibitionsRouter);
 app.use(helmet());
 
-mongoose.connect('mongodb://127.0.0.1:27017/david-san')
+mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
