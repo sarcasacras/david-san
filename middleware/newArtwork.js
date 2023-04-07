@@ -6,7 +6,7 @@ module.exports = (req, res) => {
     const image = req.file.path;
 
     //Загрузка на Cloudinary + сжатие
-    cloudinary.uploader.upload(image, { quality: 60, format: 'webp' })
+    cloudinary.uploader.upload(image, { quality: 40, format: 'webp' })
         .then((result) => {
             const newArtwork = new Artwork({
                 title,
