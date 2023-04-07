@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
         } 
         //Если пользователь выбрал новый файл
         if (req.file) {
-            const result = await cloudinary.uploader.upload(req.file.path, { quality: 80, format: 'webp' });
+            const result = await cloudinary.uploader.upload(req.file.path, { quality: 60, format: 'webp' });
             artwork.image = result.secure_url;
             artwork.cloudinaryId = result.public_id;
         }
