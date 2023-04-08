@@ -23,13 +23,13 @@
 
 
   <div id="aw-container">
-	<% for(let artwork of artworks) { %>
+	<% for(let i = artworks.length-1; i >= 0; i--) { %>
 	<div class="artwork">
-	  <a href="<%= artwork.image %>" data-lightbox="gallery"><img class="art-image" src="<%= artwork.image %>" alt="<%= artwork.title %>"></a>
-	  <h2 class="art-title"><%= artwork.title %></h2>
-	  <p class="art-description"><%= artwork.description %></p>
+	  <a href="<%= artworks[i].image %>" data-lightbox="gallery"><img class="art-image" src="<%= artworks[i].image %>" alt="<%= artworks[i].title %>"></a>
+	  <h2 class="art-title"><%= artworks[i].title %></h2>
+	  <p class="art-description"><%= artworks[i].description %></p>
 	  <% if (session.admin) { %>
-		<p class="edit-button"><a href="/artworks/<%= artwork._id %>/edit">Edit artwork</a></p>
+		<p class="edit-button"><a href="/artworks/<%= artworks[i]._id %>/edit">Edit artwork</a></p>
 	  <% } %>
 	</div>
 	<% } %>

@@ -8,13 +8,21 @@ const exhibitionsRouter = require('./routes/exhibitions');
 const auth = require('./middleware/auth');
 const session = require('express-session');
 const helmet = require('helmet');
+const MongoStore = require('connect-mongo');
 
-
+const store = MongoStore.create({
+    mongoUrl: process.env.MONGO_URL,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+      secret: process.env.SESSION_SECRET
+    }
+});
 app.use(session({
+    store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
-}));
+}));  
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
