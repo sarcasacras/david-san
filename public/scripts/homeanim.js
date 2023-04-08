@@ -16,4 +16,4 @@ function showSlides() {
   }
 }
 
-const intervalId = setInterval(showSlides, 400);
+const intervalId = setInterval(showSlides, 800);
