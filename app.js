@@ -39,7 +39,7 @@ mongoose.connect(process.env.MONGO_URL)
     .catch(err => console.log(err));
 
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', { session: req.session });
 });
 app.get('/about', (req, res) => {
     res.render('about');

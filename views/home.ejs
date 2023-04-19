@@ -31,7 +31,7 @@
                     <a href="/artworks">Arts</a>
                 </li>
                 <li class="exhibitions-category">
-                    <a href="/exhibitions">Exhibitons</a>
+                    <a href="/exhibitions">Exhibitions</a>
                 </li>
                 <li class="about-category">
                     <a href="/about">About</a>
@@ -39,6 +39,14 @@
                 <li class="contact-category">
                     <a href="/contacts">Contact</a>
                 </li>
+                <% if (session.admin) { %>
+                <li class="contact-category">
+                    <a href="/artworks/new">Add an artwork</a>
+                </li>
+                <li class="contact-category">
+                    <a href="/exhibitions/new">Add an exhibition</a>
+                </li>
+                <% } %>
             </ul>
         </nav>
         <p id="copyright">Copyright</p>
