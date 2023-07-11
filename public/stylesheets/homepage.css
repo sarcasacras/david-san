@@ -8,6 +8,12 @@
 body {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
 }
 
 li {
